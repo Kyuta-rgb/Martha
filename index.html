@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Rita</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      background:#050816;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    section{
+      min-height:100vh;
+      padding:80px 10%;
+      position:relative;
+    }
+
+    /* BACKGROUND */
+
+    .stars{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      z-index:-1;
+    }
+
+    .star{
+      position:absolute;
+      width:2px;
+      height:2px;
+      background:white;
+      border-radius:50%;
+      animation: twinkle 4s infinite alternate;
+    }
+
+    @keyframes twinkle{
+      from{
+        opacity:.2;
+      }
+      to{
+        opacity:1;
+      }
+    }
+
+    /* HERO */
+
+    .hero{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      flex-direction:column;
+    }
+
+    .intro-text{
+      font-size:1.2rem;
+      color:#b8c2ff;
+      margin-bottom:20px;
+      min-height:30px;
+    }
+
+    h1{
+      font-size:5rem;
+      margin-bottom:20px;
+      background:linear-gradient(to right,#8ea2ff,#ffffff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .sub{
+      font-size:1.4rem;
+      color:#a7b1ff;
+    }
+
+    /* GLASS CARD */
+
+    .card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      backdrop-filter:blur(10px);
+      padding:30px;
+      border-radius:25px;
+      margin-top:30px;
+      transition:.4s;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+      border-color:#6f8cff;
+    }
+
+    /* TIMELINE */
+
+    .timeline{
+      display:flex;
+      flex-direction:column;
+      gap:30px;
+    }
+
+    .timeline-item{
+      padding:25px;
+      border-left:4px solid #6f8cff;
+      background:rgba(255,255,255,0.03);
+      border-radius:0 20px 20px 0;
+    }
+
+    .timeline-item h2{
+      margin-bottom:10px;
+      color:#9eb0ff;
+    }
+
+    /* SPOTIFY */
+
+    .spotify{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+      margin-top:30px;
+    }
+
+    .song{
+      background:#0f172f;
+      padding:20px;
+      border-radius:20px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border:1px solid rgba(255,255,255,0.05);
+    }
+
+    .song:hover{
+      background:#162043;
+    }
+
+    .play{
+      width:45px;
+      height:45px;
+      border-radius:50%;
+      background:#1db954;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      cursor:pointer;
+      color:black;
+      font-weight:bold;
+    }
+
+    /* STAR MEMORIES */
+
+    .sky{
+      position:relative;
+      height:500px;
+      margin-top:40px;
+    }
+
+    .memory-star{
+      position:absolute;
+      width:12px;
+      height:12px;
+      background:white;
+      border-radius:50%;
+      cursor:pointer;
+      box-shadow:0 0 20px white;
+      transition:.3s;
+    }
+
+    .memory-star:hover{
+      transform:scale(1.5);
+    }
+
+    .memory-popup{
+      position:fixed;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      background:#101935;
+      padding:30px;
+      border-radius:20px;
+      display:none;
+      z-index:1000;
+      width:300px;
+      text-align:center;
+      border:1px solid #6f8cff;
+    }
+
+    .memory-popup button{
+      margin-top:20px;
+      padding:10px 20px;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      background:#6f8cff;
+      color:white;
+    }
+
+    /* OLD SECTION */
+
+    .old{
+      background:#e9d8b7;
+      color:#2d1d00;
+    }
+
+    .old h1{
+      -webkit-text-fill-color:#2d1d00;
+    }
+
+    .old-list{
+      margin-top:30px;
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+      font-size:1.3rem;
+    }
+
+    /* FINAL */
+
+    .final{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      flex-direction:column;
+    }
+
+    .final h2{
+      font-size:3rem;
+      margin-bottom:20px;
+    }
+
+    .final p{
+      max-width:700px;
+      line-height:1.8;
+      color:#c7d0ff;
+      font-size:1.2rem;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:768px){
+
+      h1{
+        font-size:3rem;
+      }
+
+      .sub{
+        font-size:1rem;
+      }
+
+      .final h2{
+        font-size:2rem;
+      }
+
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- STARS -->
+  <div class="stars"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="intro-text" id="typing"></div>
+
+    <h1>Happy 21st Rita 🎂</h1>
+
+    <p class="sub">
+      You're getting old mother 💀
+    </p>
+
+    <div class="card">
+      From class 7 chaos to pension plans.
+    </div>
+
+  </section>
+
+  <!-- TIMELINE -->
+  <section>
+
+    <h1>Our Lore</h1>
+
+    <div class="timeline-item">
+  <h2>📚 Class 7</h2>
+
+  <p>
+    It’s actually crazy how long we’ve known each other.
+    Back in class 7 we were just kids trying to survive school,
+    making noise, laughing at the dumbest things,
+    and somehow creating memories that would follow us for years.
+  </p>
+
+  <br>
+
+  <p>
+    None of us knew that the random conversations,
+    the jokes,
+    the chaos,
+    and the friendship would still matter this much years later.
+    But somehow they still do.
+  </p>
+</div>
+
+<div class="timeline-item">
+  <h2>🎧 Spotify Era</h2>
+
+  <p>
+    There was a time when our Spotify playlists basically shared one soul.
+    Same songs.
+    Same late night moods.
+    Same random obsession with tracks that made us feel like movie characters.
+  </p>
+
+  <br>
+
+  <p>
+    Some songs still carry memories so strongly that hearing them feels like opening old messages.
+    Music became part of the friendship,
+    and honestly,
+    I don’t think I’ll ever hear some tracks the same way again.
+  </p>
+</div>
+
+<div class="timeline-item">
+  <h2>🌌 Star Gazing</h2>
+
+  <p>
+    Those nights felt unreal sometimes.
+    Looking at the sky,
+    talking about life,
+    dreams,
+    fears,
+    relationships,
+    and everything in between like the world had paused for a moment.
+  </p>
+
+  <br>
+
+  <p>
+    It’s funny how some of the deepest conversations happen under quiet stars.
+    No pressure.
+    No pretending.
+    Just two people existing in the same moment,
+    trying to understand life together.
+  </p>
+</div>
+
+<div class="timeline-item">
+  <h2>📞 Late Night Calls</h2>
+
+  <p>
+    The late night calls were actually insane.
+    Hours disappearing without even noticing.
+    Talking about random things,
+    serious things,
+    funny things,
+    and somehow still finding more to say.
+  </p>
+
+  <br>
+
+  <p>
+    Looking back now,
+    those calls became part of growing up.
+    Tiny moments that probably seemed normal back then,
+    but now feel like pieces of a time we can never fully recreate again.
+  </p>
+</div>
+
+<div class="timeline-item">
+  <h2>🛒 Market Arc</h2>
+
+  <p>
+    Then came the market shop era.
+    Rita and Tylan pulling up,
+    chilling there,
+    talking,
+    laughing,
+    and turning an ordinary place into another memory spot.
+  </p>
+
+  <br>
+
+  <p>
+    Life kept changing,
+    people kept growing,
+    and things slowly became different,
+    but somehow the memories from those moments still stayed warm.
+    That’s probably what real friendship does.
+  </p>
+</div>
+
+    </div>
+
+  </section>
+
+  <!-- SPOTIFY -->
+  <section>
+
+    <h1>Spotify Memories</h1>
+
+    <div class="spotify">
+
+      <div class="song">
+        <div>
+          <h3>Our Random Late Night Playlist</h3>
+          <p>Certified emotional damage.</p>
+        </div>
+
+        <div class="play">▶</div>
+      </div>
+
+      <div class="song">
+        <div>
+          <h3>Movie Recommendation OSTs</h3>
+          <p>Half the movies were depressing btw.</p>
+        </div>
+
+        <div class="play">▶</div>
+      </div>
+
+      <div class="song">
+        <div>
+          <h3>Star Gazing Music</h3>
+          <p>Main character energy.</p>
+        </div>
+
+        <div class="play">▶</div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- STARS -->
+  <section>
+
+    <h1>Constellation Memories ✨</h1>
+
+    <div class="sky">
+
+      <div class="memory-star" 
+      style="top:20%;left:30%;"
+      data-memory="That one conversation that changed everything.">
+      </div>
+
+      <div class="memory-star" 
+      style="top:50%;left:70%;"
+      data-memory="Spotify really convinced us we had elite music taste.">
+      </div>
+
+      <div class="memory-star" 
+      style="top:70%;left:40%;"
+      data-memory="Those late night calls were criminal.">
+      </div>
+
+      <div class="memory-star" 
+      style="top:30%;left:80%;"
+      data-memory="Class 7 was actually legendary.">
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- TYLAN -->
+  <section>
+
+  <h1>Then This Guy Appeared 💀</h1>
+
+  <div class="card">
+
+    <p>
+      Then one day this guy entered the storyline.
+      Suddenly it was no longer just “Rita updates.”
+      It became “Rita and Tylan updates.”
+    </p>
+
+    <br>
+
+    <p>
+      At first I won’t even lie...
+      it felt weird.
+      Watching your best friend slowly become someone else’s favorite person is a strange feeling.
+      You’re happy for them,
+      but part of you quietly realizes things will never be exactly the same again.
+    </p>
+
+    <br>
+
+    <p>
+      But somehow,
+      the funny thing is,
+      the guy actually turned out to be solid.
+      What started as “this random boyfriend”
+      slowly became an actual friendship.
+    </p>
+
+    <br>
+
+    <p>
+      Market shop conversations,
+      random jokes,
+      chilling together,
+      and slowly realizing:
+      “Yeah...
+      this dude is actually a good person.”
+    </p>
+
+    <br>
+
+    <p>
+      So even though the friendship changed,
+      I think life balanced it out in its own weird way.
+      I didn’t just lose moments,
+      I gained another friend too.
+    </p>
+
+    <br>
+
+    <p>
+      Also I still refuse to call him TK.
+    </p>
+
+    <br>
+
+    <p>
+      My campus teddy bear already owns that title permanently.
+    </p>
+
+  </div>
+
+</section>
+
+  <!-- OLD SECTION -->
+  <section class="old">
+
+    <h1>Official Government Notice</h1>
+
+    <div class="old-list">
+
+      <div>✅ Eligible for aged pensions</div>
+      <div>✅ Random back pain</div>
+      <div>✅ Talking about sleep schedules</div>
+      <div>✅ Becoming someone's grandmother</div>
+      <div>✅ Saying "back in my day"</div>
+      <div>✅ Ancestor starter pack unlocked</div>
+
+    </div>
+
+  </section>
+
+  <!-- FINAL -->
+  <section class="final">
+
+    <h2>
+      Happy Birthday Rita ❤️
+    </h2>
+
+    <p>
+      No matter how life changes,
+      I’ll always appreciate the memories,
+      the music,
+      the calls,
+      the chaos,
+      and the friendship.
+      <br><br>
+      Now go pay your taxes old woman.
+    </p>
+
+  </section>
+
+  <!-- POPUP -->
+  <div class="memory-popup" id="popup">
+    <h2 id="popupText"></h2>
+    <button id="closePopup">
+      Close
+    </button>
+  </div>
+
+  <script>
+
+    // STARS
+
+    const starsContainer = document.querySelector(".stars");
+
+    for(let i = 0; i < 200; i++){
+
+      const star = document.createElement("div");
+
+      star.classList.add("star");
+
+      star.style.top = Math.random() * 100 + "%";
+      star.style.left = Math.random() * 100 + "%";
+
+      star.style.animationDelay = Math.random() * 5 + "s";
+
+      starsContainer.appendChild(star);
+
+    }
+
+    // TYPING EFFECT
+
+    const typing = document.getElementById("typing");
+
+    const text = [
+      "Class 7.",
+      "One friendship.",
+      "Too many memories.",
+      "Too many Spotify songs."
+    ];
+
+    let line = 0;
+    let char = 0;
+
+    function type(){
+
+      if(line < text.length){
+
+        if(char < text[line].length){
+
+          typing.textContent += text[line][char];
+
+          char++;
+
+          setTimeout(type, 70);
+
+        }else{
+
+          setTimeout(() => {
+
+            typing.textContent = "";
+
+            line++;
+            char = 0;
+
+            type();
+
+          }, 1200);
+
+        }
+
+      }
+
+    }
+
+    type();
+
+    // MEMORY POPUP
+
+    const stars = document.querySelectorAll(".memory-star");
+
+    const popup = document.getElementById("popup");
+
+    const popupText = document.getElementById("popupText");
+
+    const closePopup = document.getElementById("closePopup");
+
+    stars.forEach((star)=>{
+
+      star.addEventListener("click", ()=>{
+
+        popup.style.display = "block";
+
+        popupText.textContent = star.dataset.memory;
+
+      });
+
+    });
+
+    closePopup.addEventListener("click", ()=>{
+
+      popup.style.display = "none";
+
+    });
+
+  </script>
+
+</body>
+</html>
